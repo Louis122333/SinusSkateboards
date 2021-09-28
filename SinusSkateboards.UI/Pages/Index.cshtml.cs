@@ -1,25 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using SinusSkateboards.Database;
 using System.Threading.Tasks;
+using SinusSkateboards.Application.CreateProducts;
+using SinusSkateboards.Application.GetProducts;
+using System.Collections.Generic;
 
 namespace SinusSkateboards.UI.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private ApplicationDbContext _dbContext;
+    
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ApplicationDbContext dbContext)
         {
-            _logger = logger;
+            _dbContext = dbContext;
         }
 
+        [BindProperty]
+        public Application.CreateProducts.ProductViewModel Product { get; set; }
+
+        public IEnumerable<Application.GetProducts.ProductViewModel> Products { get; set; }
+      
+       
         public void OnGet()
         {
-
+            Products = new GetProducts(_dbContext).Do();
+        }
+        public async Task<IActionResult> OnPost()
+        {
+            await new CreateProduct(_dbContext).Do(Product);
+                return RedirectToPage("Index");
         }
     }
 }
