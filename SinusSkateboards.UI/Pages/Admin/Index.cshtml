@@ -1,0 +1,68 @@
+﻿@page
+@model SinusSkateboards.UI.Pages.Admin.IndexModel
+@{
+}
+
+<div id="app" class="container">
+
+    <h1 class="text-center mb-4">Product Manager</h1>
+    <div class="text-center mt-4">
+        <h3>Create, Edit, Delete</h3>
+    </div>
+
+    <div v-if="!editing">
+        <button class="btn btn-success mb-4" @@click="newProduct">Add New Product</button>
+        <h5>Products</h5>
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Product</th>
+                <th>Price</th>
+            </tr>
+            <tr v-for="(product, index) in products">
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.price}} kr</td>
+                <td><button class="btn btn-outline-info" @@click="editProduct(product.id, index)">Edit</button></td>
+                <td><button class="btn btn-outline-danger" @@click="deleteProduct(product.id, index)">Delete</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div v-else>
+        <h3>Add New Product</h3>
+        <div>
+            <h5>Name</h5>
+        </div>
+        <input v-model="productModel.name" placeholder="Product Name:" />
+        <div>
+            <h5>Description</h5>
+        </div>
+        <input v-model="productModel.description" placeholder="Description:" />
+        <div>
+            <h5>Color</h5>
+        </div>
+        <input v-model="productModel.color" placeholder="Enter Color:" />
+        <div>
+            <h5>Category</h5>
+        </div>
+        <input v-model="productModel.category" placeholder="Enter Category:" />
+        <div>
+            <h5>Price</h5>
+        </div>
+        <input v-model.number="productModel.price" placeholder="Price (SEK)" />
+
+        <button class="btn btn-success" @@click="createProduct" v-if="!productModel.id">Create Product</button>
+        <button class="btn btn-warning" @@click="updateProduct" v-else>Update Product</button>
+        <button class="btn btn-secondary" @@click="cancel">Cancel</button>
+    </div>
+
+
+
+</div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/js/Admin/main.js"></script>
+}

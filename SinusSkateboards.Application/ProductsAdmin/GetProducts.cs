@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SinusSkateboards.Application.Products
+namespace SinusSkateboards.Application.ProductsAdmin
 {
     public class GetProducts
     {
@@ -16,20 +16,20 @@ namespace SinusSkateboards.Application.Products
         public IEnumerable<ProductViewModel> Do() => 
             _dbContext.Products.ToList().Select(x => new ProductViewModel
             {
+                Id = x.Id,
                 Name = x.Name,
-                Description = x.Description,
                 Color = x.Color,
                 Category = x.Category,
-                Price = $"{x.Price:N2} kr",
+                Price = x.Price
             });
 
         public class ProductViewModel
         {
+            public int Id { get; set; }
             public string Name { get; set; }
-            public string Description { get; set; }
             public string Color { get; set; }
             public string Category { get; set; }
-            public string Price { get; set; }
+            public decimal Price { get; set; }
         }
     }
 

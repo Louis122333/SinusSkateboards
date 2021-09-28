@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SinusSkateboards.Database;
 using System.Threading.Tasks;
-using SinusSkateboards.Application.CreateProducts;
-using SinusSkateboards.Application.GetProducts;
+using SinusSkateboards.Application.Products;
 using System.Collections.Generic;
 
 namespace SinusSkateboards.UI.Pages
@@ -18,20 +17,13 @@ namespace SinusSkateboards.UI.Pages
             _dbContext = dbContext;
         }
 
-        [BindProperty]
-        public Application.CreateProducts.ProductViewModel Product { get; set; }
-
-        public IEnumerable<Application.GetProducts.ProductViewModel> Products { get; set; }
+        public IEnumerable<GetProducts.ProductViewModel> Products { get; set; }
       
        
         public void OnGet()
         {
             Products = new GetProducts(_dbContext).Do();
         }
-        public async Task<IActionResult> OnPost()
-        {
-            await new CreateProduct(_dbContext).Do(Product);
-                return RedirectToPage("Index");
-        }
+       
     }
 }

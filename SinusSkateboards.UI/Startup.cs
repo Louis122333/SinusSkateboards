@@ -53,6 +53,7 @@ namespace SinusSkateboards.UI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }

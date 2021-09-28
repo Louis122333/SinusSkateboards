@@ -15,6 +15,15 @@ namespace SinusSkateboards.Database
             :base(options) { }
 
         public DbSet<Product> Products { get; set; }
-        
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<OrderProduct>()
+                .HasKey(x => new { x.ProductId, x.OrderId });
+        }
+
     }
 }
