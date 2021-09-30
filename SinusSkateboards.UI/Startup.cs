@@ -27,6 +27,11 @@ namespace SinusSkateboards.UI
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
+            services.AddMvc().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AddPageRoute("/Home/Index", "");
+            });
+
 
         }
 

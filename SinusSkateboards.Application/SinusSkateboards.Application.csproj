@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Cart\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SinusSkateboards.Database\SinusSkateboards.Database.csproj" />
   </ItemGroup>
 

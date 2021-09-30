@@ -1,68 +1,73 @@
 ﻿@page
 @model SinusSkateboards.UI.Pages.Admin.IndexModel
+
 @{
+    ViewData["Title"] = "Products Manager";
 }
 
-<div id="app" class="container">
-
-    <h1 class="text-center mb-4">Product Manager</h1>
-    <div class="text-center mt-4">
-        <h3>Create, Edit, Delete</h3>
-    </div>
-
-    <div v-if="!editing">
-        <button class="btn btn-success mb-4" @@click="newProduct">Add New Product</button>
-        <h5>Products</h5>
-        <table class="table">
-            <tr>
-                <th>Id</th>
-                <th>Product</th>
-                <th>Price</th>
-            </tr>
-            <tr v-for="(product, index) in products">
-                <td>{{product.id}}</td>
-                <td>{{product.name}}</td>
-                <td>{{product.price}} kr</td>
-                <td><button class="btn btn-outline-info" @@click="editProduct(product.id, index)">Edit</button></td>
-                <td><button class="btn btn-outline-danger" @@click="deleteProduct(product.id, index)">Delete</button></td>
-            </tr>
-        </table>
-    </div>
-
-    <div v-else>
-        <h3>Add New Product</h3>
-        <div>
-            <h5>Name</h5>
-        </div>
-        <input v-model="productModel.name" placeholder="Product Name:" />
-        <div>
-            <h5>Description</h5>
-        </div>
-        <input v-model="productModel.description" placeholder="Description:" />
-        <div>
-            <h5>Color</h5>
-        </div>
-        <input v-model="productModel.color" placeholder="Enter Color:" />
-        <div>
-            <h5>Category</h5>
-        </div>
-        <input v-model="productModel.category" placeholder="Enter Category:" />
-        <div>
-            <h5>Price</h5>
-        </div>
-        <input v-model.number="productModel.price" placeholder="Price (SEK)" />
-
-        <button class="btn btn-success" @@click="createProduct" v-if="!productModel.id">Create Product</button>
-        <button class="btn btn-warning" @@click="updateProduct" v-else>Update Product</button>
-        <button class="btn btn-secondary" @@click="cancel">Cancel</button>
-    </div>
+<h1>Product Manager</h1>
 
 
-
-</div>
-
-@section scripts{
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="~/js/Admin/main.js"></script>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].PhotoPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].PhotoName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Product) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <img src="~/images/@item.PhotoName" height="40" width="40" alt="@item.PhotoName" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhotoName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
 }
+    </tbody>
+</table>

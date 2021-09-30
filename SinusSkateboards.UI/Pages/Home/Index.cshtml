@@ -1,0 +1,88 @@
+﻿@page
+@model SinusSkateboards.UI.Pages.Home.IndexModel
+@{
+}
+
+
+
+
+@foreach (var item in Model.Product)
+{
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="~/Images/@item.PhotoName" height="286" width="180" alt="@item.PhotoName">
+        <div class="card-body">
+            <h3 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+            <p class="card-text"> @Html.DisplayFor(modelItem => item.Category)</p>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.Price) kr</p>
+
+
+            <a href="#" class="btn btn-primary">Add (Not implemented)</a>
+        </div>
+    </div>
+</div>
+   
+
+
+}
+
+
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].PhotoName)
+                </th>
+                <th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Product)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Color)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhotoName)
+                    </td>
+                    <td>
+                        <img src="~/Images/@item.PhotoName" height="140" width="140" alt="@item.PhotoName" />
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
