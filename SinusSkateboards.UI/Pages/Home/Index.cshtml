@@ -3,29 +3,40 @@
 @{
 }
 
+<form>
+    <p>
+        <select asp-for="Category" asp-items="Model.Category">
+            <option value="">-- All categories --</option>
+
+        </select>
+        Name: <input type="text" name="searchString" placeholder="Search..." />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<div class="card-columns">
 
 
+    @foreach (var item in Model.Product)
+    {
 
-@foreach (var item in Model.Product)
-{
-<div class="container">
-    <div class="card" style="width: 18rem;">
+     <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="~/Images/@item.PhotoName" height="286" width="180" alt="@item.PhotoName">
         <div class="card-body">
-            <h3 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h3>
-            <p class="card-text"> @Html.DisplayFor(modelItem => item.Category)</p>
+            <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
             <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.Color)</p>
             <p class="card-text">@Html.DisplayFor(modelItem => item.Price) kr</p>
 
 
-            <a href="#" class="btn btn-primary">Add (Not implemented)</a>
+            <a href="#" class="btn btn-success mb-2">Buy (Not implemented)</a>
+            <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.Id">Details</a>
         </div>
+        
     </div>
+
+    }
+    
 </div>
-   
-
-
-}
 
 
 @*<table class="table">

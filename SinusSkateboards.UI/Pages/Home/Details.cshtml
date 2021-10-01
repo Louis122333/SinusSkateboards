@@ -1,0 +1,31 @@
+﻿@page
+@model SinusSkateboards.UI.Pages.Home.DetailsModel
+
+@{
+    ViewData["Title"] = Model.Product.Name;
+}
+
+<h2 class="card-title text-center">@Html.DisplayFor(modelItem => Model.Product.Name)</h2>
+<hr />
+<div class="container-fluid">
+    <div class="row justify-content-center">
+
+        <div class="card" style="width: 36rem;">
+            <img class="card-img-top" src="~/Images/@Model.Product.PhotoName" height="572" width="360" alt="@Model.Product.PhotoName">
+            <div class="card-body text-center">
+
+                <p class="card-text">@Html.DisplayFor(modelItem => Model.Product.Description)</p>
+                <p class="card-text">@Html.DisplayFor(modelItem => Model.Product.Color)</p>
+                <p class="card-text">@Html.DisplayFor(modelItem => Model.Product.Price) kr</p>
+
+
+                <a href="#" class="btn btn-primary">Buy (Not implemented)</a>
+                <a class="btn btn-warning" asp-page="./Index">Back to List</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
