@@ -36,5 +36,6 @@ namespace SinusSkateboards.UI.Pages.Home
             }
             return Page();
         }
+
     }
 }

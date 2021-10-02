@@ -10,8 +10,8 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
 
-        <div class="card" style="width: 36rem;">
-            <img class="card-img-top" src="~/Images/@Model.Product.PhotoName" height="572" width="360" alt="@Model.Product.PhotoName">
+        <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="~/Images/@Model.Product.PhotoName" alt="@Model.Product.PhotoName">
             <div class="card-body text-center">
 
                 <p class="card-text">@Html.DisplayFor(modelItem => Model.Product.Description)</p>
@@ -19,13 +19,15 @@
                 <p class="card-text">@Html.DisplayFor(modelItem => Model.Product.Price) kr</p>
 
 
-                <a href="#" class="btn btn-primary">Buy (Not implemented)</a>
-                <a class="btn btn-warning" asp-page="./Index">Back to List</a>
+                <a href="#" class="btn btn-success mb-1">Buy</a>
+                <a class="btn btn-warning" asp-page="./Index">Back to products</a>
             </div>
         </div>
 
     </div>
 
 </div>
+
+
 
 
