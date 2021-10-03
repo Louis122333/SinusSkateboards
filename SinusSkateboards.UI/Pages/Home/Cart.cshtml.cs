@@ -8,7 +8,7 @@ using SinusSkateboards.Database;
 using SinusSkateboards.Domain.Models;
 using SinusSkateboards.UI.Helpers;
 
-namespace SinusSkateboards.UI.Pages.Home
+namespace SinusSkateboards.UI.Pages.Cart
 {
     public class CartModel : PageModel
     {
@@ -22,26 +22,32 @@ namespace SinusSkateboards.UI.Pages.Home
         {
             MyCart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
         }
+
+        //public void OnGetDelete()
+        //{
+        //    MyCart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+        //}
+
         public IActionResult OnGetBuy(int id)
         {
             var product = _context.Products.Find(id);
-            var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            if (cart == null)
+             MyCart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            if (MyCart == null)
             {
-                cart = new List<Item>();
-                cart.Add(new Item()
+                MyCart = new List<Item>();
+                MyCart.Add(new Item()
                 {
                     Product = product,
                     Quantity = 1
                 });
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", MyCart);
             }
             else
             {
-                var index = Exists(cart, id);
+                var index = Exists(MyCart, id);
                 if (index == -1)
                 {
-                    cart.Add(new Item()
+                    MyCart.Add(new Item()
                     {
                         Product = product,
                         Quantity = 1
@@ -49,18 +55,18 @@ namespace SinusSkateboards.UI.Pages.Home
                 }
                 else
                 {
-                    var newQuantity = cart[index].Quantity + 1;
-                    cart[index].Quantity = newQuantity;
+                    var newQuantity = MyCart[index].Quantity + 1;
+                    MyCart[index].Quantity = newQuantity;
                 }
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", MyCart);
             }
             return RedirectToPage("Cart");
         }
-        private int Exists(List<Item> cart, int id)
+        private int Exists(List<Item> MyCart, int id)
         {
-            for (int i = 0; i < cart.Count; i++)
+            for (int i = 0; i < MyCart.Count; i++)
             {
-                if (cart[i].Product.Id.Equals(id))
+                if (MyCart[i].Product.Id.Equals(id))
                 {
                     return i;
                 }

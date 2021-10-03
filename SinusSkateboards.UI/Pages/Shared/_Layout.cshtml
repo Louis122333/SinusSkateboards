@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand mr-3" asp-area="" asp-page="/Home/Index"><img src="~/images/sinus-logo-landscape -  small.png"/></a>
+                <a class="navbar-brand mr-3" asp-area="" asp-page="/Home/Index"><img src="~/images/sinus-logo-landscape -  small.png" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
                             <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="ml-4" asp-area="" asp-page="/Home/Cart"><img src="~/images/shopping-cart.png" /></a>
+                            <a class="ml-4" asp-area="" asp-page="Cart"><img src="~/images/shopping-cart.png" /></a>
                         </li>
                     </ul>
                 </div>
@@ -52,6 +52,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <button class="btn btn-outline-danger"onclick="topFunction()" id="myBtn" title="Go to top">^</button>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

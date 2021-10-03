@@ -1,5 +1,5 @@
 ﻿@page
-@model SinusSkateboards.UI.Pages.Home.CartModel
+@model SinusSkateboards.UI.Pages.Cart.CartModel
 @using SinusSkateboards.UI.Helpers;
 @{
     Layout = "_CartLayout";
@@ -22,6 +22,9 @@ else
         <thead>
             <tr>
                 <th>
+
+                </th>
+                <th>
                     Name
                 </th>
                 <th>
@@ -31,54 +34,48 @@ else
                     Category
                 </th>
                 <th>
-                    Price
-                </th>
-                <th>
-                    Image
-                </th>
-                <th>
                     Quantity
                 </th>
                 <th>
-                    Total Price
+                    Price
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
+            @{ decimal total = 0; }
             @foreach (var item in Model.MyCart)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Product.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Product.Color)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Product.Category)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Product.Price)
-                    </td>
-                    <td>
-                        <img src="~/images/@item.Product.PhotoName" height="40" width="40" alt="@item.Product.PhotoName" />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quantity)
-                    </td>
-                    <td>
-                        @(item.Product.Price * item.Quantity)
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.Product.Id">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.Product.Id">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.Product.Id">Delete</a>
-                    </td>
-                </tr>
+                total += item.Product.Price * item.Quantity;
+            <tr>
+                <td>
+                    <img src="~/images/@item.Product.PhotoName" height="40" width="40" alt="@item.Product.PhotoName" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @(item.Product.Price * item.Quantity) kr
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
             }
+            <tr>
+                <td class="font-weight-bold" colspan="5" align="right">Total:</td>
+                <td>@total kr</td>
+            </tr>
         </tbody>
     </table>
     <br />
