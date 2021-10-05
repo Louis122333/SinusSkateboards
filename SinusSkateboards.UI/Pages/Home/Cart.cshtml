@@ -47,30 +47,35 @@ else
             @foreach (var item in Model.MyCart)
             {
                 total += item.Product.Price * item.Quantity;
-            <tr>
-                <td>
-                    <img src="~/images/@item.Product.PhotoName" height="40" width="40" alt="@item.Product.PhotoName" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.Color)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @(item.Product.Price * item.Quantity) kr
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
+                <tr>
+                    @*<td align="center">
+                        <a asp-page="Cart" asp-page-handler="delete" asp-route-id="@item.Product.Id">
+                            X
+                        </a>
+                    </td>*@
+                    <td>
+                        <img src="~/images/@item.Product.PhotoName" height="40" alt="@item.Product.PhotoName" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Color)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @(item.Product.Price * item.Quantity) kr
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
             }
             <tr>
                 <td class="font-weight-bold" colspan="5" align="right">Total:</td>
@@ -82,6 +87,7 @@ else
 
     <div class="text-center mt-4">
         <a class="btn btn-primary" asp-page="Index">Continue shopping</a>
+        <a class="btn btn-success" asp-page="Checkout">Purchase</a>
     </div>
 
 }

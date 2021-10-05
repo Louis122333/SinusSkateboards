@@ -33,9 +33,9 @@
     @foreach (var item in Model.Product)
     {
 
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 12rem;">
             <img class="card-img-top" src="~/Images/@item.PhotoName" alt="@item.PhotoName">
-            <div class="card-body">
+            <div class="card-body text-center">
                 <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
                 <p class="card-text font-italic">@Html.DisplayFor(modelItem => item.Description)</p>
                 <p class="card-text">@Html.DisplayFor(modelItem => item.Color)</p>

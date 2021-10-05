@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SinusSkateboards.Database;
 
 namespace SinusSkateboards.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211004211602_dbfix")]
+    partial class dbfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,7 +257,7 @@ namespace SinusSkateboards.Database.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartProduct");
+                    b.ToTable("CartProducts");
                 });
 
             modelBuilder.Entity("SinusSkateboards.Domain.Models.Customer", b =>
@@ -288,10 +290,7 @@ namespace SinusSkateboards.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
-
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("SinusSkateboards.Domain.Models.Order", b =>
@@ -301,6 +300,9 @@ namespace SinusSkateboards.Database.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -308,6 +310,8 @@ namespace SinusSkateboards.Database.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders");
                 });
@@ -424,15 +428,15 @@ namespace SinusSkateboards.Database.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("SinusSkateboards.Domain.Models.Customer", b =>
+            modelBuilder.Entity("SinusSkateboards.Domain.Models.Order", b =>
                 {
-                    b.HasOne("SinusSkateboards.Domain.Models.Order", "Order")
-                        .WithOne("Customer")
-                        .HasForeignKey("SinusSkateboards.Domain.Models.Customer", "OrderId")
+                    b.HasOne("SinusSkateboards.Domain.Models.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Order");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("SinusSkateboards.Domain.Models.Cart", b =>
@@ -440,11 +444,14 @@ namespace SinusSkateboards.Database.Migrations
                     b.Navigation("CartProduct");
                 });
 
+            modelBuilder.Entity("SinusSkateboards.Domain.Models.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("SinusSkateboards.Domain.Models.Order", b =>
                 {
                     b.Navigation("Cart");
-
-                    b.Navigation("Customer");
                 });
 #pragma warning restore 612, 618
         }

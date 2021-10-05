@@ -16,13 +16,22 @@ namespace SinusSkateboards.Database
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderProduct> OrderProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<OrderProduct>()
-                .HasKey(x => new { x.ProductId, x.OrderId });
+            builder.Entity<Order>()
+                .HasOne(a => a.Cart)
+                .WithOne(b => b.Order)
+                .HasForeignKey<Cart>(c => c.OrderId);
+            builder.Entity<Cart>()
+                .HasMany(a => a.CartProduct)
+                .WithOne(b => b.Cart)
+                .HasForeignKey(c => c.CartId);
+            builder.Entity<Order>()
+          .HasOne(a => a.Customer)
+          .WithOne(b => b.Order)
+          .HasForeignKey<Customer>(c => c.OrderId);
         }
 
     }

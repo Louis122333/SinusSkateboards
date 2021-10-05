@@ -10,22 +10,17 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
 
-        <div class="card" style="width: 20rem;">
-            <img class="img-fluid" src="~/Images/@Model.Product.PhotoName" alt="@Model.Product.PhotoName">
+        <div class="card" style="width: 16rem;">
+            <img class="card-img-top" src="~/Images/@Model.Product.PhotoName" alt="@Model.Product.PhotoName">
             <div class="card-body text-center">
 
                 <p class="card-text">@Html.DisplayFor(modelItem => Model.Product.Description)</p>
                 <p class="card-text">@Html.DisplayFor(modelItem => Model.Product.Color)</p>
                 <p class="card-text">@Html.DisplayFor(modelItem => Model.Product.Price) kr</p>
-
                 <a class="btn btn-warning" asp-page="./Index">Back to products</a>
+                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@Model.Product.Id" class="btn btn-success">Buy</a>
             </div>
         </div>
-
     </div>
-
+   
 </div>
-
-
-
-

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,26 +15,60 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand mr-3" asp-area="" asp-page="/Home/Index"><img src="~/images/sinus-logo-landscape -  small.png" /></a>
+                <a class="navbar-brand mr-5" asp-area="" asp-page="/Home/Index"><img src="~/images/sinus-logo-landscape -  small.png" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Home/Index">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Admin/Index">Admin</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="ml-4" asp-area="" asp-page="Cart"><img src="~/images/shopping-cart.png" /></a>
-                        </li>
-                    </ul>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item mr-5">
+                                <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Home/Index">Products</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Admin/Index">Admin</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="ml-4" asp-area="" asp-page="Cart"><img src="~/images/shopping-cart.png" /></a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav d-flex justify-content-end">
+                            <li class="nav-item">
+                                <p class="mt-2 mr-4 text-primary">Logged in as: @User.Identity.Name</p>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary" asp-area="" asp-page="/Admin/Logout">Logout</a>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item mr-5">
+                                <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Home/Index">Products</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Admin/Index">Admin</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="nav-link text-dark font-weight-bold" asp-area="" asp-page="/Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a class="ml-4" asp-area="" asp-page="Cart"><img src="~/images/shopping-cart.png" /></a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
+                            <li class="nav-item">
+                                <a class="btn btn-primary" asp-page="Login">Login</a>
+                            </li>
+                        </ul>
+                    }
+
                 </div>
             </div>
         </nav>
@@ -52,7 +89,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <button class="btn btn-outline-danger"onclick="topFunction()" id="myBtn" title="Go to top">^</button>
+    <button class="btn btn-outline-danger" onclick="topFunction()" id="myBtn" title="Go to top">^</button>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

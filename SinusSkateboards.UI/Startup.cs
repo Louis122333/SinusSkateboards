@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace SinusSkateboards.UI
 {
@@ -26,7 +27,18 @@ namespace SinusSkateboards.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddRazorPages();
+            services.AddIdentity<IdentityUser, IdentityRole>(options => {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Home/Login");
+            services.AddRazorPages()
+                .AddRazorPagesOptions(Configuration =>
+                {
+                    Configuration.Conventions.AuthorizeFolder("/Admin");
+                });
             services.AddSession();
             services.AddMvc().AddRazorPagesOptions(options =>
             {
@@ -56,6 +68,7 @@ namespace SinusSkateboards.UI
             app.UseRouting();
             app.UseSession();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -16,7 +16,5 @@ namespace SinusSkateboards.Domain.Models
         public decimal Price { get; set; }
         public string PhotoPath { get; set; }
         public string PhotoName { get; set; }
-        public ICollection<OrderProduct> OrderProducts { get; set; }
-
     }
 }

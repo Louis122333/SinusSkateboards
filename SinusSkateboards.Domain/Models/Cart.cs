@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SinusSkateboards.Domain.Models
 {
-    public class OrderProduct
+    public class Cart
     {
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
-
-        public int OrderId { get; set; }
+        public int Id { get; set; }
+        public List<CartProduct> CartProduct { get; set; }
         public Order Order { get; set; }
+        public int OrderId { get; set; }
+
     }
 }

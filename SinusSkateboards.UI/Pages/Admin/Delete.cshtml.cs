@@ -12,9 +12,9 @@ namespace SinusSkateboards.UI.Pages.Admin
 {
     public class DeleteModel : PageModel
     {
-        private readonly SinusSkateboards.Database.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DeleteModel(SinusSkateboards.Database.ApplicationDbContext context)
+        public DeleteModel(ApplicationDbContext context)
         {
             _context = context;
         }

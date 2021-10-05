@@ -13,29 +13,33 @@ namespace SinusSkateboards.UI.Pages.Cart
     public class CartModel : PageModel
     {
         private ApplicationDbContext _context;
-        public List<Item> MyCart { get; set; }
+        public List<CartProduct> MyCart { get; set; }
         public CartModel(ApplicationDbContext context)
         {
             _context = context;
         }
         public void OnGet()
         {
-            MyCart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            MyCart = SessionHelper.GetObjectFromJson<List<CartProduct>>(HttpContext.Session, "cart");
         }
 
-        //public void OnGetDelete()
+        //public void OnGetDelete(int id)
         //{
-        //    MyCart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+        //    MyCart = SessionHelper.GetObjectFromJson<List<CartProduct>>(HttpContext.Session, "cart");
+        //    int index = Exists(MyCart, id);
+        //    MyCart.RemoveAt(index);
+        //    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", MyCart);
+            
         //}
 
         public IActionResult OnGetBuy(int id)
         {
             var product = _context.Products.Find(id);
-             MyCart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+             MyCart = SessionHelper.GetObjectFromJson<List<CartProduct>>(HttpContext.Session, "cart");
             if (MyCart == null)
             {
-                MyCart = new List<Item>();
-                MyCart.Add(new Item()
+                MyCart = new List<CartProduct>();
+                MyCart.Add(new CartProduct()
                 {
                     Product = product,
                     Quantity = 1
@@ -47,7 +51,7 @@ namespace SinusSkateboards.UI.Pages.Cart
                 var index = Exists(MyCart, id);
                 if (index == -1)
                 {
-                    MyCart.Add(new Item()
+                    MyCart.Add(new CartProduct()
                     {
                         Product = product,
                         Quantity = 1
@@ -62,7 +66,7 @@ namespace SinusSkateboards.UI.Pages.Cart
             }
             return RedirectToPage("Cart");
         }
-        private int Exists(List<Item> MyCart, int id)
+        private int Exists(List<CartProduct> MyCart, int id)
         {
             for (int i = 0; i < MyCart.Count; i++)
             {

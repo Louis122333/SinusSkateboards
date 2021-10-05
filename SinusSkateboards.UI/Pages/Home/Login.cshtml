@@ -1,0 +1,31 @@
+﻿@page
+@model SinusSkateboards.UI.Pages.Home.LoginModel
+@{
+}
+
+
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+            <h1 class="text-center">Admin Login</h1>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="@Model.Username" class="control-label">Username</label>
+                    <input asp-for="@Model.Username" class="form-control" type="text" />
+                    <span asp-validation-for="@Model.Username" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-4">
+                    <label asp-for="@Model.Password" class="control-label">Password</label>
+                    <input asp-for="@Model.Password" class="form-control" type="password" />
+                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-4">
+                    <button class="btn btn-success">Sign in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

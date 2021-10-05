@@ -12,9 +12,9 @@ namespace SinusSkateboards.UI.Pages.Admin
 {
     public class DetailsModel : PageModel
     {
-        private readonly SinusSkateboards.Database.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DetailsModel(SinusSkateboards.Database.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context)
         {
             _context = context;
         }

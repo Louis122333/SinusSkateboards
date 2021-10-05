@@ -1,0 +1,50 @@
+﻿@page
+@model SinusSkateboards.UI.Pages.Home.CheckoutModel
+@{
+}
+
+<h1 class="text-center mb-3">Register & Order</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Customer.FirstName" class="control-label">First Name</label>
+                <input asp-for="Customer.FirstName" class="form-control" type="text" />
+                <span asp-validation-for="Customer.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.LastName" class="control-label">Last Name</label>
+                <input asp-for="Customer.LastName" class="form-control"  type="text"/>
+                <span asp-validation-for="Customer.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.Address" class="control-label"></label>
+                <input asp-for="Customer.Address" class="form-control" type="text" />
+                <span asp-validation-for="Customer.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.PhoneNumber" class="control-label">Phone Number</label>
+                <input asp-for="Customer.PhoneNumber" class="form-control" type="tel" />
+                <span asp-validation-for="Customer.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.City" class="control-label"></label>
+                <input asp-for="Customer.City" class="form-control" type="text" />
+                <span asp-validation-for="Customer.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer.PostalCode" class="control-label">Postal Code</label>
+                <input asp-for="Customer.PostalCode" class="form-control" />
+                <span asp-validation-for="Customer.PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <input type="submit" value="Place Order" class="btn btn-success" />
+                <h6 class="font-weight-bold ml-2 mt-2">Total Price: @Model.Total kr</h6>
+                <a asp-page="Cart" class="btn btn-warning mt-2">Back to Cart</a>
+            </div>
+        </form>
+    </div>
+</div>

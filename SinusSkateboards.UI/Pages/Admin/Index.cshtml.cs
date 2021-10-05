@@ -12,9 +12,9 @@ namespace SinusSkateboards.UI.Pages.Admin
 {
     public class IndexModel : PageModel
     {
-        private readonly SinusSkateboards.Database.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndexModel(SinusSkateboards.Database.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }

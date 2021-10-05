@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace SinusSkateboards.Domain.Models
 {
-    public class Item
+    public class CartProduct
     {
+        public int Id { get; set; }
         public Product Product { get; set; }
         public int Quantity { get; set; }
+        public Cart Cart { get; set; }
+        public int CartId { get; set; }
     }
 }

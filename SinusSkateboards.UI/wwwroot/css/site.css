@@ -9,7 +9,7 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
@@ -27,8 +27,8 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
-  scroll-behavior: smooth;
+    font-size: 14px;
+    scroll-behavior: smooth;
 }
 @media (min-width: 768px) {
   html {
