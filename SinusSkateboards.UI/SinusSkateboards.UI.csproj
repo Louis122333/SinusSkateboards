@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SinusSkateboards.Application\SinusSkateboards.Application.csproj" />
     <ProjectReference Include="..\SinusSkateboards.Database\SinusSkateboards.Database.csproj" />
   </ItemGroup>
 

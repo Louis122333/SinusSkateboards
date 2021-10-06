@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SinusSkateboards.Domain", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SinusSkateboards.Database", "SinusSkateboards.Database\SinusSkateboards.Database.csproj", "{76CE818F-E6DB-49BF-A155-94AF115F6B20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SinusSkateboards.Application", "SinusSkateboards.Application\SinusSkateboards.Application.csproj", "{14875FC0-4D8C-4ED4-BD56-77D9875EAF6E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{76CE818F-E6DB-49BF-A155-94AF115F6B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76CE818F-E6DB-49BF-A155-94AF115F6B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76CE818F-E6DB-49BF-A155-94AF115F6B20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14875FC0-4D8C-4ED4-BD56-77D9875EAF6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14875FC0-4D8C-4ED4-BD56-77D9875EAF6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14875FC0-4D8C-4ED4-BD56-77D9875EAF6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14875FC0-4D8C-4ED4-BD56-77D9875EAF6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
