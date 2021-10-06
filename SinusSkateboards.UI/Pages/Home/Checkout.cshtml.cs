@@ -42,12 +42,35 @@ namespace SinusSkateboards.UI.Pages.Home
             decimal totalPrice = 0m;
             Domain.Models.Cart cart = new Domain.Models.Cart();
             cart.CartProduct = new List<CartProduct>();
-
+            var isFound = false;
             foreach (var cartProduct in cartProducts)
             {
-                cart.CartProduct.Add(cartProduct);
-                totalPrice += cartProduct.Product.Price * cartProduct.Quantity;
-                
+                foreach (var dbProduct in _context.Products)
+                {
+                    if (cartProduct.Product.Id == dbProduct.Id)
+                    {
+                        foreach (var cartProductz in cart.CartProduct)
+                        {
+                            if (cartProductz.Product == dbProduct)
+                            {
+                                cartProductz.Quantity = cartProduct.Quantity;
+                                isFound = true;
+                                break;
+                            }
+                            
+                        }
+                        if (isFound == false)
+                        {
+                            CartProduct cartitem = new CartProduct();
+                            cartitem.Product = dbProduct;
+                            cartitem.Quantity = cartProduct.Quantity;
+                            totalPrice += cartProduct.Product.Price * cartProduct.Quantity;
+                            cart.CartProduct.Add(cartitem);
+                            break;
+                        }
+                        isFound = false;
+                    }
+                }
             }
 
             Order order = new Order()
@@ -70,8 +93,9 @@ namespace SinusSkateboards.UI.Pages.Home
             _context.Database.OpenConnection();
             _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Products ON;");
             _context.SaveChanges();
-           
-            return RedirectToPage("Index");
+            var ok = _context.Orders.Include(x => x.Cart).ThenInclude(c => c.CartProduct).ThenInclude(a => a.Product);
+
+            return RedirectToPage("Confirmation");
         }
     }
 }

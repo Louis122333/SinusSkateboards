@@ -1,0 +1,76 @@
+﻿@page
+@model SinusSkateboards.UI.Pages.Home.ConfirmationModel
+@{
+}
+
+
+<div class="text-center">
+    <h1>Thank you for your purchase!</h1>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Order Number:
+            </th>
+            <th>
+
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Color
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ decimal total = 0;}
+        @foreach (var item in Model.MyCart)
+        {
+            total += item.Product.Price * item.Quantity;
+         
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cart.Id)
+                </td>
+                <td>
+                    <img src="~/images/@item.Product.PhotoName" height="40" alt="@item.Product.PhotoName" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @(item.Product.Price * item.Quantity) kr
+                </td>
+                <td>
+            </tr>
+            
+        }
+        <tr>
+            <td class="font-weight-bold" colspan="5" align="right">Total:</td>
+            <td>@total kr</td>
+        </tr>
+       
+    </tbody>
+</table>

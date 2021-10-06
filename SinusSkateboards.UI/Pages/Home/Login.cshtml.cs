@@ -42,7 +42,7 @@ namespace SinusSkateboards.UI.Pages.Home
                 }
                 else
                 {
-                    return RedirectToPage("/Index");
+                    return RedirectToPage("Index");
                 }
             }
 

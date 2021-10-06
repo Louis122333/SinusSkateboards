@@ -23,15 +23,6 @@ namespace SinusSkateboards.UI.Pages.Cart
             MyCart = SessionHelper.GetObjectFromJson<List<CartProduct>>(HttpContext.Session, "cart");
         }
 
-        //public void OnGetDelete(int id)
-        //{
-        //    MyCart = SessionHelper.GetObjectFromJson<List<CartProduct>>(HttpContext.Session, "cart");
-        //    int index = Exists(MyCart, id);
-        //    MyCart.RemoveAt(index);
-        //    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", MyCart);
-            
-        //}
-
         public IActionResult OnGetBuy(int id)
         {
             var product = _context.Products.Find(id);
