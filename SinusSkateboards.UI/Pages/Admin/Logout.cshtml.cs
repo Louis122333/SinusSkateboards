@@ -17,8 +17,7 @@ namespace SinusSkateboards.UI.Pages.Admin
             this.signInManager = signInManager;
         }
         public void OnGet()
-        {
-        }
+        { }
 
         public async Task<IActionResult> OnPostLogoutAsync()
         {
@@ -30,7 +29,5 @@ namespace SinusSkateboards.UI.Pages.Admin
         {
             return RedirectToPage("Index");
         }
-
-        
     }
 }

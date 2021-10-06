@@ -50,15 +50,11 @@ namespace SinusSkateboards.UI.Pages.Admin
 
                 product.PhotoName = uploadFiles.FileName;
                 product.PhotoPath = imgSave;
-
-
-
             }
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-            
         }
     }
 }

@@ -57,7 +57,6 @@ namespace SinusSkateboards.UI.Pages.Home
                                 isFound = true;
                                 break;
                             }
-                            
                         }
                         if (isFound == false)
                         {

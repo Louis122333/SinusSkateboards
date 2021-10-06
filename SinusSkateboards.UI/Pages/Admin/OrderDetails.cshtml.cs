@@ -28,7 +28,6 @@ namespace SinusSkateboards.UI.Pages.Admin
             
             Order = await _context.Orders.Include(c => c.Customer).Include(ca => ca.Cart.CartProduct).ThenInclude(p => p.Product)
                 .FirstOrDefaultAsync(o => o.Id == id);
-                
            
             if (Order == null)
             {

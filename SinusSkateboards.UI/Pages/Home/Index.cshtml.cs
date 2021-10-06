@@ -19,8 +19,6 @@ namespace SinusSkateboards.UI.Pages.Home
         {
             _context = context;
         }
-
-        
         public IList<Product> Product { get; set; }
         public SelectList Category { get; set; }
 
@@ -47,8 +45,5 @@ namespace SinusSkateboards.UI.Pages.Home
             Category = new SelectList(await categoryQuery.Distinct().ToListAsync());
             Product = await products.ToListAsync();
         }
-
-    
-        
     }
 }

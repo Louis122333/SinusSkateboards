@@ -7,6 +7,17 @@
 
 <h2 class="card-title text-center">@Html.DisplayFor(modelItem => Model.Product.Name)</h2>
 <hr />
+
+<div>
+    <form>
+        <div class="form">
+            <h3>More Colors</h3>
+            <select asp-for="ColorSearch" asp-items="@(new SelectList(Model.Colors))">
+                <option value="" selected disabled>Colors</option>
+            </select>
+        </div>
+    </form>
+</div>
 <div class="container-fluid">
     <div class="row justify-content-center">
 
@@ -22,5 +33,4 @@
             </div>
         </div>
     </div>
-   
 </div>

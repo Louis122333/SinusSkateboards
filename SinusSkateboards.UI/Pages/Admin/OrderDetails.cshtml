@@ -7,8 +7,10 @@
 <div class="text-center">
     <h1>Order Number: @Model.Order.Id</h1>
 </div>
-<div>
-    
+<div class="card p-2">
+    <div class="font-weight-bolder">
+        <h3>Customer info</h3>
+    </div>
     <dl class="row">
         <dt class="col-sm-2">
             First Name:
@@ -85,24 +87,24 @@
     <tbody>
         @foreach (var item in Model.Order.Cart.CartProduct)
         {
-        <tr>
-            <td>
-                <img src="~/images/@item.Product.PhotoName" height="40" alt="@item.Product.PhotoName" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Price)
-            </td>
-            <td></td>
-        </tr>
+            <tr>
+                <td>
+                    <img src="~/images/@item.Product.PhotoName" height="40" alt="@item.Product.PhotoName" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Price)
+                </td>
+                <td></td>
+            </tr>
         }
     </tbody>
 </table>
