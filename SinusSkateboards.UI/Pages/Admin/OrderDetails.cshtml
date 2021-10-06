@@ -1,9 +1,12 @@
 ﻿@page
 @model SinusSkateboards.UI.Pages.Admin.OrderDetailsModel
 @{
+    ViewData["Title"] = "Order: " + Model.Order.Id;
 }
 
-
+<div class="text-center">
+    <h1>Order Number: @Model.Order.Id</h1>
+</div>
 <div>
     
     <dl class="row">

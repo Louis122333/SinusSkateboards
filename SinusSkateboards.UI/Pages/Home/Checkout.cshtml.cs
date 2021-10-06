@@ -95,7 +95,7 @@ namespace SinusSkateboards.UI.Pages.Home
             _context.SaveChanges();
             var ok = _context.Orders.Include(x => x.Cart).ThenInclude(c => c.CartProduct).ThenInclude(a => a.Product);
 
-            return RedirectToPage("Confirmation");
+            return RedirectToPage("Confirmation", new { order = order.Id });
         }
     }
 }

@@ -39,7 +39,10 @@ namespace SinusSkateboards.UI
                 {
                     Configuration.Conventions.AuthorizeFolder("/Admin");
                 });
-            services.AddSession();
+            services.AddSession(options => {
+                options.Cookie.MaxAge = TimeSpan.FromDays(1);
+                options.Cookie.Name = "cart";
+            });
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/Home/Index", "");
