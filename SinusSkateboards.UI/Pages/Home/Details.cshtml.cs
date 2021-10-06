@@ -33,7 +33,7 @@ namespace SinusSkateboards.UI.Pages.Home
         {
             if (id == null)
             {
-                return NotFound();
+                id = ColorId;
             }
           
             Product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
