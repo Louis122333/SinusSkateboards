@@ -7,8 +7,18 @@
 <h1 class="text-center">Orders</h1>
 <div class="col mb-4">
     <h5>Total orders: @Model.Orders.Count()</h5>
-    <h5>Average price per order: @(decimal.Round(Model.Orders.Sum(x => x.Price)/Model.Orders.Count())) kr</h5>
-    <h5>Total sales: @(decimal.Round(Model.Orders.Sum(x => x.Price))) kr</h5>
+    @if (Model.Orders.Count == 0)
+    {
+        <div class="text-center text-danger">
+            <h1>No orders found</h1>
+            <img class="rounded-circle" src="~/images/travolta.png" height="200" />
+        </div>
+    }
+    else
+    {
+        <h5>Average price per order: @(decimal.Round(Model.Orders.Sum(x => x.Price)/Model.Orders.Count())) kr</h5>
+        <h5>Total sales: @(decimal.Round(Model.Orders.Sum(x => x.Price))) kr</h5>
+    }
 </div>
 
 <table class="table">
