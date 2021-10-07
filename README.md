@@ -13,7 +13,6 @@ The admin has the ability to create, edit and remove products.<br/>
 The admin page also has an order overview, with detailed information about the orders, customers and revenue.
 
 
-
 ## Languages
 C#<br/>
 (HTML, CSS, JavaScript)
@@ -31,5 +30,9 @@ Microsoft.EntityFrameworkCore.Design<br/>
 Microsoft.EntityFrameworkCore.SqlServer<br/>
 Microsoft.EntityFrameworkCore.Tools<br/>
 Microsoft.VisualStudio.Web.CodeGeneration.Design<br/>
+
+## Database Diagram
+
+<img src="https://user-images.githubusercontent.com/74004258/136403435-59a79e60-c2aa-49bd-a1e9-b373fd152a78.png" height="350">
 
 
