@@ -40,7 +40,8 @@ namespace SinusSkateboards.UI.Pages.Home
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                products = products.Where(p => p.Name.Contains(searchString));
+                products = products.Where(p => p.Name.Contains(searchString) || p.Color.Contains(searchString)
+                || p.Category.Contains(searchString));
             }
             Category = new SelectList(await categoryQuery.Distinct().ToListAsync());
             Product = await products.ToListAsync();
