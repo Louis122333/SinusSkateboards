@@ -5,7 +5,9 @@ Webshop school exam for ASP.NET
 The user can browse between products and add them to their cart.<br/>
 When placing an order, the order is then saved to the database.
 
-Seed data is provided with 27 unique products.
+Seed data is provided with 27 unique products.<br/>
+You might have to add a new migration in pmc and then update the database.
+
 
 #### Admin
 To enter the admin page, you need to login. Details can be found in Program.cs<br/>
